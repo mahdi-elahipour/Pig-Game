@@ -15,7 +15,7 @@ let p2CurrentTotal = 0;
 let turns = 0;
 let numOfDice = 6;
 let newNumber;
-let BASE_URL="../images/";
+let BASE_URL="./../images/";
 const dice = [
     "dice-six-faces-one.svg",
     "dice-six-faces-two.svg",
@@ -29,6 +29,7 @@ rollDice.addEventListener("mouseup", (e) => {
     upEffectHandler(e.target);
     newNumber = generateNumber()
     diceImg.setAttribute("src", `${BASE_URL}${dice[newNumber]}`);
+    diceImg.setAttribute("alt", `face_${newNumber+1}`);
     turns++;
     if (turns <= numOfDice) {
 

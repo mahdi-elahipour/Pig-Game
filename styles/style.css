@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
+    font-family: quickSand;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+main {
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 700px;
+    height: 400px;
+    margin: 100px auto;
+    border-radius: 10px;
+    display: flex;
+}
+
+section {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    justify-content: space-between;
+    background: linear-gradient(-45deg, #FFC796 0%, #ff6b95 110%);
+
+    opacity: .5;
+    font-size: 2rem;
+    align-items: center;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(236, 109, 147, 0.596);
+    padding: 18px;
+    border-radius: 18px;
+}
+
+.buttons {
+    position: absolute;
+    left: calc(50% - 106px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.buttons div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    align-items: center;
+    gap: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.highlight {
+    animation: playersEffect 2.2s forwards;
+    box-shadow: inset 0 0 12px 1px rgba(241, 114, 114, 0.567);
+}
+
+@keyframes playersEffect {
+    to {
+        opacity: 1;
+    }
+}
+
+.downEffect {
+    animation: down .3s forwards;
+}
+
+.upEffect {
+    animation: up .7s forwards;
+}
+
+@keyframes down {
+    to {
+        border-radius: 4px;
+    }
+}
+
+@keyframes up {
+    from {
+        border-radius: 10px;
+    }
+
+    to {
+        border-radius: 10px;
+    }
+
+}

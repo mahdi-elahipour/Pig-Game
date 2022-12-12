@@ -121,3 +121,9 @@ section {
     }
 
 }
+#dice_image{
+    width:110px;
+    height: 110px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

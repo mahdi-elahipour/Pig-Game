@@ -15,7 +15,7 @@ let p2CurrentTotal = 0;
 let turns = 0;
 let numOfDice = 6;
 let newNumber;
-let BASE_URL="./../images/";
+let BASE_URL = "../images/";
 const dice = [
     "dice-six-faces-one.svg",
     "dice-six-faces-two.svg",
@@ -27,9 +27,9 @@ const dice = [
 rollDice.addEventListener("mouseup", (e) => {
     e.preventDefault;
     upEffectHandler(e.target);
-    newNumber = generateNumber()
-    diceImg.setAttribute("src", `${BASE_URL}${dice[newNumber]}`);
-    diceImg.setAttribute("alt", `face_${newNumber+1}`);
+    newNumber = generateNumber();
+    console.log(newNumber);
+    diceImg.style.background = `url(${BASE_URL}${dice[newNumber - 1]})`;
     turns++;
     if (turns <= numOfDice) {
 
@@ -42,18 +42,18 @@ rollDice.addEventListener("mouseup", (e) => {
     }
     if (turns > numOfDice * 2) {
         turns = 0;
-        if (p1CurrentTotal !== p2CurrentTotal) {
-            if (p1CurrentTotal > p2CurrentTotal) {
-                p1totalScore++;
-            }
-            else {
-                p2totalScore++;
-            }
-        }
+
+        p1totalScore += p1CurrentTotal;
+
+        p2totalScore += p2CurrentTotal;
+
+        p1totalScore > 100 && p1totalScore > p2totalScore && resetUserData("newGame", "player 1");
+        p2totalScore > 100 && p2totalScore > p1totalScore && resetUserData("newGame", "player 2");
+
         resetUserData();
     }
 })
-rollDice.addEventListener("mousedown",(e)=>{
+rollDice.addEventListener("mousedown", (e) => {
     downEffectHandler(e.target);
 })
 hold.addEventListener("mouseup", (e) => {
@@ -63,24 +63,27 @@ hold.addEventListener("mouseup", (e) => {
 
 })
 hold.addEventListener("mousedown", (e) => {
-downEffectHandler(e.target);
+    downEffectHandler(e.target);
 })
 newGame.addEventListener("mousedown", (e) => {
 
     downEffectHandler(e.target);
 })
-newGame.addEventListener("mouseup", (e)=>{
+newGame.addEventListener("mouseup", (e) => {
     upEffectHandler(e.target)
     resetUserData("newGame");
 
 })
 
 
-function resetUserData(newGame) {
+function resetUserData(newGame, winner) {
     if (newGame === "newGame") {
         p1totalScore = 0;
         p2totalScore = 0;
         diceImg.setAttribute("src", "");
+    }
+    if (winner) {
+        alert(`winner is ${winner}`);
     }
     player1.classList.add("highlight");
     player2.classList.remove("highlight");
@@ -95,7 +98,7 @@ function resetUserData(newGame) {
 
 
 function currentTotalCalculator(currentTotal) {
-    currentTotal === "p2CurrentTotal" ? p2CurrentTotal += newNumber + 1 : p1CurrentTotal += newNumber + 1;
+    currentTotal === "p2CurrentTotal" ? p2CurrentTotal += newNumber : p1CurrentTotal += newNumber;
     p1CurrentScore.innerText = p1CurrentTotal;
     p2CurrentScore.innerText = p2CurrentTotal;
     if (currentTotal === "p2CurrentTotal") {
@@ -114,7 +117,7 @@ function currentTotalCalculator(currentTotal) {
 
 function generateNumber() {
     let randomNumber;
-    randomNumber = Math.floor(Math.random() * 6);
+    randomNumber = Math.trunc(Math.random() * 6) + 1;
     return randomNumber;
 }
 

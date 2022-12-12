@@ -1,3 +1,4 @@
+"use strict"
 const newGame = document.querySelector("#new_game");
 const diceImg = document.querySelector("#dice_image");
 const rollDice = document.querySelector("#roll_dice");
@@ -16,20 +17,13 @@ let turns = 0;
 let numOfDice = 6;
 let newNumber;
 let BASE_URL = "../images/";
-const dice = [
-    "dice-six-faces-one.svg",
-    "dice-six-faces-two.svg",
-    "dice-six-faces-three.svg",
-    "dice-six-faces-four.svg",
-    "dice-six-faces-five.svg",
-    "dice-six-faces-six.svg"
-]
+
 rollDice.addEventListener("mouseup", (e) => {
     e.preventDefault;
     upEffectHandler(e.target);
     newNumber = generateNumber();
     console.log(newNumber);
-    diceImg.style.background = `url(${BASE_URL}${dice[newNumber - 1]})`;
+    diceImg.style.background = `url(${BASE_URL}${newNumber}.svg)`;
     turns++;
     if (turns <= numOfDice) {
 
